@@ -5,12 +5,15 @@
 #include <ctype.h>
 #include "list.h"
 
+void print_node(struct song_node *p){
+  printf("%s ",p->artist);
+  printf("- %s\n ",p->name);
+}
 void print_list(struct song_node *p){
   struct song_node *tmp = p;
   printf("songs:[ \n");
   while(tmp){
-    printf("%s ",tmp->artist);
-    printf("- %s\n ",tmp->name);
+    print_node(tmp);
     tmp = tmp->next;
   }
   printf("]\n");
@@ -116,6 +119,21 @@ struct song_node* remove_song(struct song_node *p,char *a,char *n){
     }
     return p;
   }
+int length(struct song_node* p){
+  int len = 0;
+  while (p){
+    len++;
+    p = p->next;
+  }
+return len;
+  }
+struct song_node* random_node(struct song_node *p){
+  srand(time(NULL));
+  int index = rand()%length(p);
+  int i;
+  for(i=0;i<index;i++)p=p->next;
+  return p;
+}
 int main(){
   struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(head->artist,"pearl jam");
@@ -125,11 +143,13 @@ int main(){
   head = insert_inOrder(head,"pink floyd","time");
   head = insert_inOrder(head,"pearl jam","even flow");
   print_list(head);
-  //struct song_node *p = find_artist(head,"pearl jam");
+  //struct song_node *p = find_artist(head,"pearl jam"); //test find
   //printf("%s \n", p->name);
-  head = remove_song(head,"pearl jam","alive");
+/* head = remove_song(head,"pearl jam","alive");  //test remove
   print_list(head);
   head = remove_song(head,"pearl jam","yellow ledbetter");
   print_list(head);
-
+  */
+ /* struct song_node *random = random_node(head); //test random song
+ print_node(random); */
 }
