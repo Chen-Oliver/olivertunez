@@ -46,13 +46,13 @@ char* lowercase(char *p){
   return orig;
 }
 int compNodes(struct song_node *first, struct song_node *second){ //compares two nodes by artist then by name
-  if(strcmp(first->artist,second->artist)==0){
+  if(strcmp(lowercase(first->artist),lowercase(second->artist))==0){
   //  printf("%d\n",strcmp(first->name,second->name));
-    return strcmp(first->name,second->name);
+    return strcmp(lowercase(first->name),lowercase(second->name));
   }
   else{
   //  printf("%d\n",strcmp(first->artist,second->artist));
-  return strcmp(first->artist,second->artist);
+  return strcmp(lowercase(first->artist),lowercase(second->artist));
 }
 }
 //inserts nodes alphabetically
@@ -81,7 +81,7 @@ struct song_node *find_artist(struct song_node *p,char *a){
   struct song_node *curr = (struct song_node*)malloc(sizeof(struct song_node));
   curr = p;
   while(curr){
-    if(strcmp(curr->artist,a)==0)return curr;
+    if(strcmp(lowercase(curr->artist),lowercase(a))==0)return curr;
     else curr= curr->next;
   }
   return NULL;
@@ -90,7 +90,7 @@ struct song_node *find_song(struct song_node *p,char *n){
   struct song_node *curr = (struct song_node*)malloc(sizeof(struct song_node));
   curr = p;
   while(curr){
-    if(strcmp(curr->name,n)==0)return curr;
+    if(strcmp(lowercase(curr->name),lowercase(n))==0)return curr;
     else curr= curr->next;
   }
   return NULL;
@@ -100,7 +100,7 @@ struct song_node* remove_song(struct song_node *p,char *a,char *n){
   struct song_node* curr = p;
   struct song_node* prev = NULL;
   while(curr){
-    if(strcmp(curr->artist,a)==0 && strcmp(curr->name,n)==0){
+    if(strcmp(lowercase(curr->artist),lowercase(a))==0 && strcmp(lowercase(curr->name),lowercase(n))==0){
       if(prev==NULL){
         free(p);
         return curr = curr->next;;
@@ -139,9 +139,9 @@ int main(){
   strcpy(head->artist,"pearl jam");
   strcpy(head->name,"alive");
   head->next =NULL;
-  head = insert_inOrder(head,"pearl jam","yellow ledbetter");
-  head = insert_inOrder(head,"pink floyd","time");
-  head = insert_inOrder(head,"pearl jam","even flow");
+  head = insert_inOrder(head,"pearl jam","yellow leDBetter");
+  head = insert_inOrder(head,"pInk floyd","time");
+  head = insert_inOrder(head,"PeArL jAm","eveN flow");
   print_list(head);
   //struct song_node *p = find_artist(head,"pearl jam"); //test find
   //printf("%s \n", p->name);
