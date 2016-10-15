@@ -7,10 +7,10 @@
 
 void print_list(struct song_node *p){
   struct song_node *tmp = p;
-  printf("Data:[ ");
+  printf("songs:[ \n");
   while(tmp){
     printf("%s ",tmp->artist);
-    printf("- %s ",tmp->name);
+    printf("- %s\n ",tmp->name);
     tmp = tmp->next;
   }
   printf("]\n");
@@ -92,21 +92,30 @@ struct song_node *find_song(struct song_node *p,char *n){
   }
   return NULL;
 }
-//given a node, remove it from the list
-void remove_song(struct song_node *p,char *a,char *n){
-struct song_node *curr = (struct song_node*)malloc(sizeof(struct song_node));
-curr->next= p;
-struct song_node *dummy = curr;
-while(curr->next!=NULL){
-  if(strcmp(curr->next->artist,a)==0 && strcmp(curr->next->name,n)==0){
-    curr->next = curr->next->next;
-    curr->next->next = 0;
-    free(curr->next);
-    curr=curr->next;
-    break;
+//remove a song
+struct song_node* remove_song(struct song_node *p,char *a,char *n){
+  struct song_node* curr = p;
+  struct song_node* prev = NULL;
+  while(curr){
+    if(strcmp(curr->artist,a)==0 && strcmp(curr->name,n)==0){
+      if(prev==NULL){
+        free(p);
+        return curr = curr->next;;
+      }
+      else{
+        prev->next = curr->next;
+        free(curr);
+        curr = prev->next;
+        break;
+      }
+    }
+      else{
+        prev= curr;
+        curr = curr->next;
+      }
+    }
+    return p;
   }
-}
-}
 int main(){
   struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(head->artist,"pearl jam");
@@ -116,8 +125,11 @@ int main(){
   head = insert_inOrder(head,"pink floyd","time");
   head = insert_inOrder(head,"pearl jam","even flow");
   print_list(head);
- struct song_node *p = find_artist(head,"pearl jam");
-  printf("%s \n", p->name);
-  //print_list(head);
+  //struct song_node *p = find_artist(head,"pearl jam");
+  //printf("%s \n", p->name);
+  head = remove_song(head,"pearl jam","alive");
+  print_list(head);
+  head = remove_song(head,"pearl jam","yellow ledbetter");
+  print_list(head);
 
 }
