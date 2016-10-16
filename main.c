@@ -6,15 +6,6 @@
 #include "list.h"
 #include "songlib.h"
 int main(){
-  struct song_node *table[26];
-  int i=0;
-  for(;i<26;i++)table[i]=0;
-  struct song_node *alist = (struct song_node*)malloc(sizeof(struct song_node));
-/*  strcpy(alist->artist,"adele");
-  strcpy(alist->name,"hello");
-  table[0] = alist;
-  table[0]->next = NULL;
-  libadd("AC/DC","highway to hell"); */
   printf("Testing linked list functions\n=================================\n");
   printf("Creating head...\n");
   struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
@@ -49,5 +40,18 @@ int main(){
   head = remove_song(head,"pearl jam","alive");
   printf("printing new list...\n");
   print_list(head);
-
+  printf("Testing library functions\n=================================\n");
+  struct song_node *table[26];
+  int i=0;
+  for(;i<26;i++)table[i]=0;
+  printf("Library set to empty\n");
+  printf("Adding a-lettered list to library\n");
+  struct song_node *alist = (struct song_node*)malloc(sizeof(struct song_node));
+  strcpy(alist->artist,"adele");
+  strcpy(alist->name,"hello");
+  table[0] = alist;
+  table[0]->next = NULL;
+  libadd("AC/DC","highway to hell");
+  printf("Calling print letter function for a\n");
+  printLetter(table,'a');
 }
