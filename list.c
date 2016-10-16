@@ -5,8 +5,25 @@
 #include <ctype.h>
 #include "list.h"
 
+char* lowercase(char *p){
+  char *orig = p;
+  while(*p){
+    *p=tolower(*p);
+    p++;
+  }
+  return orig;
+}
+/*int strcmp(char *s1, char *s2){
+  s1 = lowercase(s1);
+  s2 = lowercase(s2);
+  while (*s1 == *s2 && *s1 && *s2 ){
+    s1++;
+    s2++;
+  }
+  return *s1 - *s2;
+}*/
 void print_node(struct song_node *p){
-  printf("%s ",p->artist);
+  printf("\t%s ",p->artist);
   printf("- %s\n ",p->name);
 }
 void print_list(struct song_node *p){
@@ -37,22 +54,15 @@ struct song_node* insert_front(struct song_node *p, char* a, char* n){
   new->next = p;
   return new;
 }
-char* lowercase(char *p){
-  char *orig = p;
-  while(*p){
-    *p=tolower(*p);
-    p++;
-  }
-  return orig;
-}
+
 int compNodes(struct song_node *first, struct song_node *second){ //compares two nodes by artist then by name
-  if(strcmp(lowercase(first->artist),lowercase(second->artist))==0){
+  if(strcmp(first->artist,second->artist)==0){
   //  printf("%d\n",strcmp(first->name,second->name));
-    return strcmp(lowercase(first->name),lowercase(second->name));
+    return strcmp(first->name,second->name);
   }
   else{
   //  printf("%d\n",strcmp(first->artist,second->artist));
-  return strcmp(lowercase(first->artist),lowercase(second->artist));
+  return strcmp(first->artist,second->artist);
 }
 }
 //inserts nodes alphabetically
@@ -81,7 +91,7 @@ struct song_node *find_artist(struct song_node *p,char *a){
   struct song_node *curr = (struct song_node*)malloc(sizeof(struct song_node));
   curr = p;
   while(curr){
-    if(strcmp(lowercase(curr->artist),lowercase(a))==0)return curr;
+    if(strcmp(curr->artist,a)==0)return curr;
     else curr= curr->next;
   }
   return NULL;
@@ -90,7 +100,7 @@ struct song_node *find_song(struct song_node *p,char *n){
   struct song_node *curr = (struct song_node*)malloc(sizeof(struct song_node));
   curr = p;
   while(curr){
-    if(strcmp(lowercase(curr->name),lowercase(n))==0)return curr;
+    if(strcmp(curr->name,n)==0)return curr;
     else curr= curr->next;
   }
   return NULL;
@@ -100,7 +110,7 @@ struct song_node* remove_song(struct song_node *p,char *a,char *n){
   struct song_node* curr = p;
   struct song_node* prev = NULL;
   while(curr){
-    if(strcmp(lowercase(curr->artist),lowercase(a))==0 && strcmp(lowercase(curr->name),lowercase(n))==0){
+    if(strcmp(curr->artist,a)==0 && strcmp(curr->name,n)==0){
       if(prev==NULL){
         free(p);
         return curr = curr->next;;
@@ -134,7 +144,7 @@ struct song_node* random_node(struct song_node *p){
   for(i=0;i<index;i++)p=p->next;
   return p;
 }
-int main(){
+/*int main(){
   struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(head->artist,"pearl jam");
   strcpy(head->name,"alive");
@@ -145,11 +155,11 @@ int main(){
   print_list(head);
   //struct song_node *p = find_artist(head,"pearl jam"); //test find
   //printf("%s \n", p->name);
-/* head = remove_song(head,"pearl jam","alive");  //test remove
+ head = remove_song(head,"pearl jam","alive");  //test remove
   print_list(head);
   head = remove_song(head,"pearl jam","yellow ledbetter");
   print_list(head);
-  */
- /* struct song_node *random = random_node(head); //test random song
- print_node(random); */
-}
+
+  struct song_node *random = random_node(head); //test random song
+ print_node(random);
+} */

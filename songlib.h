@@ -1,0 +1,10 @@
+int alphaToNum(char *);
+void add_song(struct song_node**, char *,char*);
+struct song_node* findlib_artist(struct song_node**,char *);
+struct song_node* findlib_song(struct song_node**,char *);
+void printLetter(struct song_node**,char);
+void printArtist(struct song_node**,char* );
+void printLib(struct song_node **);
+void shuffle(struct song_node **);
+void delete_song(struct song_node **,char *,char *);
+void delete_all(struct song_node **);
