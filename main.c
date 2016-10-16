@@ -10,17 +10,44 @@ int main(){
   int i=0;
   for(;i<26;i++)table[i]=0;
   struct song_node *alist = (struct song_node*)malloc(sizeof(struct song_node));
-  strcpy(alist->artist,"adele");
+/*  strcpy(alist->artist,"adele");
   strcpy(alist->name,"hello");
   table[0] = alist;
   table[0]->next = NULL;
-  libadd("AC/DC","highway to hell");
-  struct song_node *plist = (struct song_node*)malloc(sizeof(struct song_node));
-  strcpy(plist->artist,"pearl jam");
-  strcpy(plist->name,"alive");
-  table[15] = plist;
-  table[15]->next =NULL;
-  table[15] = insert_inOrder(plist,"pearl jam","yellow ledbetter");
-  table[15] = insert_inOrder(plist,"pink floyd","time");
-  table[15] = insert_inOrder(plist,"pearl jam","even flow");
+  libadd("AC/DC","highway to hell"); */
+  printf("Testing linked list functions\n=================================\n");
+  printf("Creating head...\n");
+  struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
+  strcpy(head->artist,"pearl jam");
+  strcpy(head->name,"alive");
+  head->next =NULL;
+  printf("Printing current list...\n");
+  print_list(head);
+  printf("Testing insert_inOrder...\n");
+  head = insert_inOrder(head,"pearl jam","yellow ledbetter");
+  head = insert_inOrder(head,"pink floyd","time");
+  head = insert_inOrder(head,"pearl jam","even flow");
+  printf("Printing current list...\n");
+  print_list(head);
+  printf("Testing find_artist...\n");
+  printf("Finding pearl jam...\n");
+  struct song_node *p = find_artist(head,"pearl jam");
+  printf("Artist found at %p: \n",p);
+  printf("Printing artist and name at the address...\n");
+  print_node(p);
+  printf("Testing random function...\n");
+  struct song_node *random = random_node(head); //test random song
+  printf("Random function gave the follow: \n");
+  print_node(random);
+  printf("Testing remove function...\n");
+  printf("Removing pearl jam - time...\n");
+  head = remove_song(head,"pink floyd","time");
+  printf("printing new list...\n");
+  print_list(head);
+  printf("Testing remove again...\n");
+  printf("Removing pink floyd - alive...\n");
+  head = remove_song(head,"pearl jam","alive");
+  printf("printing new list...\n");
+  print_list(head);
+
 }
