@@ -8,10 +8,12 @@
 int alphaToNum(char *info){//get index of list to place song in
   //char letter = tolower(info[0]); //removed all lowercasing for convenience
   char letter = info[0];
-  int index;
-  if (letter >= 'a' && letter <= 'z')
-   index = letter - 'a';
-   return index;
+  int index=-1;
+  if (letter >= 'A' && letter <= 'Z')
+    index = letter - 'A';
+  else if (letter >= 'a' && letter <= 'z')
+    index = letter - 'a';
+  return index;
   }
 void add_song(struct song_node* *lib, char *a,char*n){
   int index = alphaToNum(a);
@@ -27,19 +29,20 @@ struct song_node* findlib_artist(struct song_node* *lib,char *a){
   else return find_artist(lib[index],a);
 }
 struct song_node* findlib_song(struct song_node* *lib,char *n){
-  int i=alphaToNum(n);
-  struct song_node *found;
-  found = find_song(lib[i],n);
-  if(found)return found;
-  else{
+  int i=0;
+  for(;i<26;i++){
+    if(find_song(lib[i],n)){
+      return(find_song(lib[i],n));
+    }
+  }
   printf("song not found\n");
   return NULL;
 }
-  }
 void printLetter(struct song_node* *lib,char letter){
   int index = alphaToNum(&letter);
   if(index == -1)printf("Invalid letter\n");
   else{
+    printf("%c ",letter);
     print_list(lib[index]);
   }
 }
@@ -76,9 +79,4 @@ void delete_song(struct song_node **lib,char *a,char *n){
 void delete_all(struct song_node **lib){
   int i=0;
   for(;i<26;i++)lib[i]=free_list(lib[i]);
-}
-void lib_add(struct song_node* *lib, char *a, char *n){
-  int index = alphaToNum(a);
-  if(index == -1)printf("Invalid artist\n");
-  else lib[index]=insert_inOrder(lib[index],a,n);
 }
