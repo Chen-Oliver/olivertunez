@@ -137,18 +137,3 @@ struct song_node* random_node(struct song_node *p){
   for(i=0;i<index;i++)p=p->next;
   return p;
 }
-/*int main(){
-  struct song_node *head = (struct song_node*)malloc(sizeof(struct song_node));
-  strcpy(head->artist,"pearl jam");
-  strcpy(head->name,"alive");
-  head->next =NULL;
-  printf("Printing current list...\n");
-  print_list(head);
-  printf("Testing insert_inOrder...\n");
-  head = insert_inOrder(head,"pearl jam","yellow ledbetter");
-  head = insert_inOrder(head,"pink floyd","time");
-  head = insert_inOrder(head,"pearl jam","even flow");
-  print_list(head);
-  head = remove_song(head,"pearl jam","alive");
-  print_list(head);
-  }*/

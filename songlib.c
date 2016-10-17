@@ -6,7 +6,6 @@
 #include "list.h"
 
 int alphaToNum(char *info){//get index of list to place song in
-  //char letter = tolower(info[0]); //removed all lowercasing for convenience
   char letter = info[0];
   int index=-1;
   if (letter >= 'A' && letter <= 'Z')
