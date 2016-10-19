@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <ctype.h>
+#include "songlib.h"
 #include "list.h"
 
 int alphaToNum(char *info){//get index of list to place song in

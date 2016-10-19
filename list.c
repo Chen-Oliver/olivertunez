@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <ctype.h>
 #include "list.h"
 
 char* lowercase(char *p){
@@ -138,8 +137,7 @@ int length(struct song_node* p){
 return len;
   }
 struct song_node* random_node(struct song_node *p){
-  srand(time(NULL));
-  int index = rand()%length(p);
+  int index = sranddev()%length(p);
   int i;
   for(i=0;i<index;i++)p=p->next;
   return p;
