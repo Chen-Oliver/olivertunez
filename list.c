@@ -4,15 +4,6 @@
 #include <time.h>
 #include "list.h"
 
-char* lowercase(char *p){
-  char *orig = p;
-  while(*p){
-    *p=tolower(*p);
-    p++;
-  }
-  return orig;
-}
-
 void print_node(struct song_node *p){
   printf("\t%s ",p->artist);
   printf("- %s\n ",p->name);
@@ -52,7 +43,7 @@ int compNodes(struct song_node *first, struct song_node *second){ //compares two
     return strcmp(first->name,second->name);
   }
   else{
- 
+
   return strcmp(first->artist,second->artist);
 }
 }
@@ -103,7 +94,7 @@ struct song_node* remove_song(struct song_node *p,char *a,char *n){
   while(curr){
     if(strcmp(curr->artist,a)==0 && strcmp(curr->name,n)==0){
       if(prev==NULL){
-	curr = curr->next;
+	      curr = curr->next;
         free(p);
 	return curr;
       }
@@ -130,7 +121,7 @@ int length(struct song_node* p){
 return len;
   }
 struct song_node* random_node(struct song_node *p){
-  int index = sranddev()%length(p);
+  int index = (sranddev())%length(p);
   int i;
   for(i=0;i<index;i++)p=p->next;
   return p;
