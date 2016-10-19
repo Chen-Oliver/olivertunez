@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "songlib.h"
 #include "list.h"
-
+#include "songlib.h"
 int alphaToNum(char *info){//get index of list to place song in
+  //char letter = tolower(info[0]); //removed all lowercasing for convenience
   char letter = info[0];
   int index=-1;
   if (letter >= 'A' && letter <= 'Z')
@@ -14,7 +14,7 @@ int alphaToNum(char *info){//get index of list to place song in
     index = letter - 'a';
   return index;
   }
-void add_song(struct song_node* *lib, char *a,char*n){
+void add_song(struct song_node** lib, char *a,char*n){
   int index = alphaToNum(a);
   if(index == -1)printf("Invalid song\n");
   else lib[alphaToNum(a)]=insert_inOrder(lib[alphaToNum(a)],a,n);

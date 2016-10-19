@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "list.h"
+#include "songlib.h"
 int main(){
   printf("Testing linked list functions\n=================================\n");
   printf("Creating head...\n");

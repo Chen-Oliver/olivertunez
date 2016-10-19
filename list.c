@@ -121,7 +121,8 @@ int length(struct song_node* p){
 return len;
   }
 struct song_node* random_node(struct song_node *p){
-  int index = (sranddev())%length(p);
+  sranddev();
+  int index = rand()%length(p);
   int i;
   for(i=0;i<index;i++)p=p->next;
   return p;
