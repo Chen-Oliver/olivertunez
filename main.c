@@ -12,25 +12,30 @@ int main(){
   head->next =NULL;
   printf("Printing current list...\n");
   print_list(head);
+
   printf("Testing insert_inOrder...\n");
   head = insert_inOrder(head,"pearl jam","yellow ledbetter");
   head = insert_inOrder(head,"pink floyd","time");
   head = insert_inOrder(head,"pearl jam","even flow");
   printf("Printing current list...\n");
   print_list(head);
+
   printf("Testing find_artist...\n");
   printf("Finding pearl jam...\n");
   struct song_node *p = find_artist(head,"pearl jam");
-  printf("Artist found at %p: \n",p);
-  printf("Printing artist and name at the address...\n");
   print_node(p);
+
   printf("Finding song: time\n");
-  struct song_node *s = find_song(head,"time");
-  printf("found time at: %p\n",s);
+  struct song_node *t = find_song(head,"time");
+  print_node(t);
+
   printf("Finding song: sandstorm\n");
-  find_song(head,"sandstorm");
+  struct song_node *notfound = find_song(head,"sandstorm");
+  print_node(notfound);
+
   printf("Testing random function...\n");
-  struct song_node *random = random_node(head); //test random song
+  struct song_node *random = random_node(head);
+
   printf("Random function gave the follow: \n");
   print_node(random);
   printf("Testing remove function...\n");
@@ -38,11 +43,13 @@ int main(){
   head = remove_song(head,"pink floyd","time");
   printf("printing new list...\n");
   print_list(head);
+
   printf("Testing remove again...\n");
   printf("Removing pink floyd - alive...\n");
   head = remove_song(head,"pearl jam","alive");
   printf("printing new list...\n");
   print_list(head);
+
   printf("Testing library functions\n=================================\n");
   struct song_node *table[26];
   int i=0;
@@ -58,6 +65,7 @@ int main(){
   add_song(table,"aerosmith","dream on");
   printf("Calling print letter function for a\n");
   printLetter(table,'a');
+
   printf("Adding some more songs...\n");
   struct song_node *mlist = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(mlist->artist,"muse");
@@ -82,19 +90,18 @@ int main(){
   strcpy(rlist->name,"never gonna give you up");
   table[17] = rlist;
   table[17]->next = NULL;
+
   printf("Calling print library function...\n");
   printLib(table);
+
   printf("Testing print artist on led zeppelin...\n");
   printArtist(table,"led zeppelin");
+
   printf("Testing find song in library on levels\n");
   struct song_node *levels = findlib_song(table,"levels");
-  printf("levels found at %p\n",levels);
-  printf("artist and song at the address:\n ");
   print_node(levels);
   printf("Testing find artist in library on adele\n");
   struct song_node *adele = findlib_artist(table,"adele");
-  printf("adele song found at %p\n",adele);
-  printf("artist and song at the address: \n");
   print_node(adele);
   printf("testing shuffle function...\n");
   shuffle(table);

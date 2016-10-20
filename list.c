@@ -5,8 +5,11 @@
 #include "list.h"
 
 void print_node(struct song_node *p){
+  if(!p)printf("not found\n");
+  else{
   printf("\t%s ",p->artist);
   printf("- %s\n ",p->name);
+  }
 }
 void print_list(struct song_node *p){
   struct song_node *tmp = p;
@@ -76,7 +79,6 @@ struct song_node *find_artist(struct song_node *p,char *a){
     if(strcmp(curr->artist,a)==0)return curr;
     else curr= curr->next;
   }
-  printf("no songs by %s found\n",a);
   return NULL;
 }
 struct song_node *find_song(struct song_node *p,char *n){
@@ -86,7 +88,7 @@ struct song_node *find_song(struct song_node *p,char *n){
     if(strcmp(curr->name,n)==0)return curr;
     else curr= curr->next;
   }
-  printf("%s not found\n",n);
+
   return NULL;
 }
 //remove a song
