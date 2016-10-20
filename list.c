@@ -76,6 +76,7 @@ struct song_node *find_artist(struct song_node *p,char *a){
     if(strcmp(curr->artist,a)==0)return curr;
     else curr= curr->next;
   }
+  printf("no songs by %s found\n",a);
   return NULL;
 }
 struct song_node *find_song(struct song_node *p,char *n){
@@ -85,6 +86,7 @@ struct song_node *find_song(struct song_node *p,char *n){
     if(strcmp(curr->name,n)==0)return curr;
     else curr= curr->next;
   }
+  printf("%s not found\n",n);
   return NULL;
 }
 //remove a song
@@ -121,7 +123,8 @@ int length(struct song_node* p){
 return len;
   }
 struct song_node* random_node(struct song_node *p){
-  sranddev();
+  //sranddev();
+  srand(time(NULL));
   int index = rand()%length(p);
   int i;
   for(i=0;i<index;i++)p=p->next;

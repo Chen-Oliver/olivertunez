@@ -24,6 +24,11 @@ int main(){
   printf("Artist found at %p: \n",p);
   printf("Printing artist and name at the address...\n");
   print_node(p);
+  printf("Finding song: time\n");
+  struct song_node *s = find_song(head,"time");
+  printf("found time at: %p\n",s);
+  printf("Finding song: sandstorm\n");
+  find_song(head,"sandstorm");
   printf("Testing random function...\n");
   struct song_node *random = random_node(head); //test random song
   printf("Random function gave the follow: \n");
