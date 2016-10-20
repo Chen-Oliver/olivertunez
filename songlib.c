@@ -64,9 +64,11 @@ void printArtist(struct song_node* *lib,char* a){
 }
 void printLib(struct song_node **lib){ //only prints lists with songs
   int i=0;
+  printf("[");
   for(;i<26;i++){
     if(lib[i])print_list(lib[i]);
   }
+  printf("]\n");
 }
 void shuffle(struct song_node **lib){
   int i=0;

@@ -49,12 +49,18 @@ int main(){
   head = remove_song(head,"pearl jam","alive");
   printf("printing new list...\n");
   print_list(head);
+  
+  printf("freeing list...\n");
+  head = free_list(head);
+  print_list(head);
 
   printf("Testing library functions\n=================================\n");
   struct song_node *table[26];
   int i=0;
   for(;i<26;i++)table[i]=0;
   printf("Library set to empty\n");
+  printf("printing empty library: \n");
+  printLib(table);
   printf("Adding a-lettered list to library using add_song function\n");
   struct song_node *alist = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(alist->artist,"adele");

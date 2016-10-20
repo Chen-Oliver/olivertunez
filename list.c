@@ -13,18 +13,19 @@ void print_node(struct song_node *p){
 }
 void print_list(struct song_node *p){
   struct song_node *tmp = p;
-  printf("songs:[ \n");
+  printf("songs:{ \n");
   while(tmp){
     print_node(tmp);
     tmp = tmp->next;
   }
-  printf("]\n");
+  printf("}\n");
 }
 struct song_node* free_list(struct song_node *ptr){
   struct song_node *head = ptr;
   struct song_node *nxt = (struct song_node*)malloc(sizeof(struct song_node));
   while(ptr){
     nxt = ptr->next;
+    printf("freeing node: %s - %s\n",ptr->artist,ptr->name);
     free(ptr);
     ptr = nxt;
   }
